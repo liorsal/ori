@@ -2,7 +2,18 @@
 <html lang="he">
 <head>
   <meta charset="UTF-8" />
-  <title>Split Images Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- SEO & Open Graph (WhatsApp Preview) -->
+  <title>PEACH' - סטודיו לאימוני נשים</title>
+  <meta name="description" content="הקמתי את ה-PEACH' בשנת 2019 מתוך רצון ליצור בית לנשים — מרחב בטוח שבו כל אישה לומדת להתחבר לגוף שלה, לנוע בביטחון, להתחזק ולהתאמן מתוך אהבה עצמית." />
+  
+  <meta property="og:title" content="PEACH' - סטודיו לאימוני נשים" />
+  <meta property="og:description" content="מרחב בטוח שבו כל אישה לומדת להתחבר לגוף שלה, לנוע בביטחון ולהתחזק מתוך אהבה עצמית. פילאטיס, יוגה ואימוני כוח." />
+  <meta property="og:image" content="https://raw.githubusercontent.com/liorsal/ori/main/p3-i.png" />
+  <meta property="og:url" content="https://liorsal.github.io/ori/" />
+  <meta property="og:type" content="website" />
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;700;900&display=swap');
 
@@ -408,19 +419,70 @@
       .about-layout {
         flex-direction: column;
         align-items: center;
-        text-align: right;
+        text-align: center; /* מרכוז טקסט במובייל למראה נקי יותר */
+        padding: 60px 20px;
+        gap: 30px;
+      }
+
+      .about-image img {
+        max-width: 250px; /* תמונה קטנה יותר במובייל */
       }
 
       .about-text {
         max-width: 100%;
+        padding: 24px 20px; /* פחות ריווח פנימי */
+        text-align: center;
+        transform: translateX(0) translateY(30px); /* כניסה מלמטה במובייל */
+      }
+      
+      .about-text h1 {
+        font-size: 26px; /* כותרת קטנה יותר */
+      }
+      
+      .about-text p {
+        font-size: 16px;
       }
 
       .grid-container {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* טור אחד */
+        padding: 0 10px;
       }
 
       .class-card:nth-child(even) {
         margin-top: 0;
+      }
+      
+      /* כפתור פרופורציונלי למובייל - יחסי לרוחב המסך אבל לא קטן מדי */
+      .signup-button {
+        padding: 3vw 6vw; /* ריפוד יחסי */
+        font-size: max(1rem, 4vw); /* פונט יחסי עם מינימום */
+        top: 2vh;
+        right: 2vw;
+        border-radius: 100vw; /* עיגול מושלם תמיד */
+        gap: 2vw;
+      }
+
+      /* תמונות Hero במובייל - רואים את כל התמונה */
+      .hero-section {
+        height: auto; /* גובה לפי התוכן */
+        min-height: 50vh; /* מינימום חצי מסך */
+        padding: 20px 0;
+      }
+
+      .hero-section--cover img {
+        object-fit: contain; /* הכלה מלאה של התמונה */
+        height: auto;
+        max-height: 85vh; /* לא גבוה מדי */
+      }
+
+      /* התאמת אנימציות כניסה למובייל - פחות תזוזה */
+      @keyframes about-bubble-in {
+        0% { transform: translateY(40px) scale(0.96); opacity: 0; }
+        100% { transform: translateY(0) scale(1); opacity: 1; }
+      }
+      
+      .about-section.screen.is-visible .about-text {
+        animation: about-bubble-in 1s ease-out forwards;
       }
     }
 
