@@ -7,8 +7,12 @@
 </head>
 <body>
     <h1>Hello World!</h1>
+    <button id="reserve-button">שרייני מקום</button>
     <script>
         const signupUrl = 'https://studiopeach.web.arboxapp.com/membership?whitelabel=Arbox&lang=he&location=1580&referrer=SITE';
+        document.getElementById('reserve-button').addEventListener('click', () => {
+            window.location.href = signupUrl;
+        });
     </script>
 </body>
 </html>
