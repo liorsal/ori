@@ -625,8 +625,81 @@
         grid-column: 1 / -1; /* כרטיס מלא רוחב בסוף, לא נשאר לבד בצד */
       }
     }
+
+    .map-section {
+      background-color: #f7e1d5;
+      padding: 40px 24px 60px;
+      text-align: center;
+    }
+
+    .map-section h2 {
+      font-size: 1.6rem;
+      margin-bottom: 16px;
+    }
+
+    .map-wrapper {
+      max-width: 900px;
+      margin: 0 auto 16px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    .map-wrapper iframe {
+      width: 100%;
+      height: 320px;
+      border: 0;
+    }
+
+    .map-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .map-buttons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background-color: #5a1632;
+      color: #FDF5E6;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    }
+
+    .map-buttons a:hover {
+      background-color: #3b0f22;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin: 24px 0 0;
+      align-items: center;
+    }
+
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .social-links img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      display: block;
+    }
   </style>
 </head>
+
   <body dir="rtl">
   <button class="signup-button" type="button" aria-label="שרייני מקום לשיעור">
     שרייני מקום 🍑
@@ -656,14 +729,6 @@
           <p>אחרי שנתיים הדלתות של הפיץ' נפתחות מחדש ואני כל כך מתרגשת</p>
           <p>נעים להכיר — אני אוריקי, וכיף לי כל כך שאת כאן 😊,</p>
           <p>הקמתי את ה-PEACH' בשנת 2019 מתוך רצון ליצור בית לנשים — מרחב בטוח שבו כל אישה לומדת להתחבר לגוף שלה, לנוע בביטחון, להתחזק ולהתאמן מתוך אהבה עצמית.</p>
-          <p>בשבילי הדרך הכי חזקה להראות לגוף שלי אהבה — היא דרך תנועה</p>
-          <p>ללמוד מה הגוף שלי צריך, להשקיע בו זמן ולהתמיד</p>
-          <p>כל כך מעריכה כל אחת שהחליטה לעשות את הצעד ולהתחיל, אתן פשוט אדירות.</p>
-          <p>חשוב לי לחדד שאצלי לכל אחת יש את הקצב שלה ואת המסלול שלה.</p>
-          <p>אין לחץ, אין השוואות — יש התקדמות אישית, ניסוי וטעייה והנאה מהדרך 😊</p>
-          <p>והמטרה שלי ושל הצוות:</p>
-          <p>היא קודם כל שתהנו! חיוכים ואוירה טובה הם חלק בלתי נפרד מהחווייה אצלנו בפיץ'</p>
-          <p>אנחנו נהיה כאן להקשיב, לדייק, לתמוך, ולתת לך את כל הכלים והידע להפוך לגרסה החזקה והבטוחה ביותר של עצמך — מבפנים ומבחוץ.</p>
           <p>ב-PEACH' תמצאי שני מתחמי אימון מקצועיים:</p>
           <ul>
             <li>מתחם פילאטיס מזרן, פילאטיס בר ויוגה</li>
@@ -713,14 +778,50 @@
           <h3>7. בודי פאמפ</h3>
           <p>הוא אימון כוח דינמי המשלב תרגילי משקולות עם קטעי אירובי קצרים להגברת הדופק. זה שיעור שמעלה את הקצב, משפר סיבולת לב ריאה ומרגיש כמו בוסטר אנרגיה לכל הגוף.</p>
         </div>
+
+        <div class="class-card">
+          <h3></h3>
+          <p>בהמשך יתווספו סוגי אימונים נוספים</p>
+        </div>
       </div>
-      <p style="text-align: center; margin-top: 24px; color: #FDF5E6;">
-        בהמשך יתווספו סוגי אימונים נוספים
-      </p>
+      
     </section>
 
     <section class="hero-section hero-section--cover screen">
       <img src="5.jpeg" alt="תמונה 5" />
+    </section>
+    <section class="map-section screen" id="map-section">
+      <h2>איפה אנחנו נמצאות</h2>
+      <div class="map-wrapper">
+        <iframe
+          loading="lazy"
+          allowfullscreen
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=קרית%20שמונה%20קניון%208%20סנטר%20קומה%20מינוס%20אחת&output=embed">
+        </iframe>
+      </div>
+      <div class="map-buttons">
+        <a href="https://waze.com/ul?q=קרית%20שמונה%20קניון%208%20סנטר%20קומה%20מינוס%20אחת&navigate=yes" target="_blank" rel="noopener noreferrer">
+          פתחי ב‑Waze
+        </a>
+        <a href="https://maps.app.goo.gl/xSqpPX3ZyVHr2iVu5?g_st=iw" target="_blank" rel="noopener noreferrer">
+          פתחי ב‑Google Maps
+        </a>
+        <a href="https://maps.apple.com/?q=קרית%20שמונה%20קניון%208%20סנטר%20קומה%20מינוס%20אחת" target="_blank" rel="noopener noreferrer">
+          פתחי ב‑Apple Maps
+        </a>
+      </div>
+      <div class="social-links">
+        <a href="https://www.instagram.com/oriki_peach?igsh=MTFzeDF2ZjRjNXdvaQ%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer">
+          <img src="INSTAGRAM.png" alt="Instagram" />
+        </a>
+        <a href="http://wa.me/972549591828" target="_blank" rel="noopener noreferrer">
+          <img src="WHATSAPP.png" alt="WhatsApp" />
+        </a>
+        <a href="https://www.facebook.com/share/16k9M1A4BA/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">
+          <img src="FACEBOOK.png" alt="Facebook" />
+        </a>
+      </div>
     </section>
   </div>
 
