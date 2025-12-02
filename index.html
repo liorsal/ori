@@ -145,6 +145,34 @@
       display: none;
     }
 
+    .coupon-trigger-button {
+      position: fixed;
+      top: 16px;
+      right: 210px; /* עוד קצת שמאלה מכפתור השריון */
+      z-index: 1001;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      background-color: #FDF5E6;
+      color: #5a1632;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      backdrop-filter: blur(4px);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+      transform: none;
+    }
+
+    .coupon-trigger-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+      background-color: #fff7eb;
+    }
+
     @keyframes signup-travel {
       0% {
         top: 50%;
@@ -296,6 +324,116 @@
       }
       100% {
         transform: translate3d(0, 0, 0) rotate(1.5deg) scale(1);
+      }
+    }
+
+    .coupon-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.75);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+
+    .coupon-modal.is-visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .coupon-modal-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      max-width: 900px;
+      max-height: 900px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: translateY(-100vh) scale(0.95);
+      animation: coupon-drop-in 0.9s cubic-bezier(0.22, 0.85, 0.35, 1.2) forwards;
+    }
+
+    .coupon-modal-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.6);
+      border-radius: 12px;
+    }
+
+    .coupon-confetti {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .glitter-particle {
+      position: absolute;
+      top: -20px;
+      width: var(--size);
+      height: var(--size);
+      background-color: var(--color);
+      border-radius: 20%;
+      opacity: 0;
+      box-shadow: 0 0 4px 1px rgba(255, 255, 255, 0.4);
+      animation: glitter-fall var(--duration) linear forwards;
+    }
+
+    @keyframes glitter-fall {
+      0% {
+        transform: translateY(0) translateX(0) rotate(0deg) scale(0.5);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh) translateX(var(--drift)) rotate(var(--rot)) scale(1);
+        opacity: 0.6;
+      }
+    }
+
+    .coupon-modal-close {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      border: none;
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      font-size: 20px;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .coupon-modal-close:hover {
+      background: rgba(0, 0, 0, 0.9);
+    }
+
+    @keyframes coupon-drop-in {
+      0% {
+        transform: translateY(-100vh) scale(0.9);
+      }
+      60% {
+        transform: translateY(12px) scale(1.02);
+      }
+      80% {
+        transform: translateY(-6px) scale(0.98);
+      }
+      100% {
+        transform: translateY(0) scale(1);
       }
     }
 
@@ -559,6 +697,15 @@
         bottom: 8%;
       }
 
+      .coupon-trigger-button {
+        top: 2vh;
+        right: auto;
+        left: 4vw; /* במובייל - בצד שמאל למעלה */
+        transform: none;
+        padding: 2.5vw 4.5vw;
+        font-size: max(0.85rem, 3.2vw);
+      }
+
       /* התאמת אנימציות כניסה למובייל - פחות תזוזה */
       @keyframes about-bubble-in {
         0% { transform: translateY(40px) scale(0.96); opacity: 0; }
@@ -787,6 +934,16 @@
   <button class="signup-button" type="button" aria-label="שרייני מקום לשיעור">
     שרייני מקום 🍑
   </button>
+  <button class="coupon-trigger-button" type="button" aria-label="פתיחת קופון הנחה">
+    קופון הנחה
+  </button>
+  <div class="coupon-modal" aria-hidden="true">
+    <div class="coupon-modal-inner">
+      <button class="coupon-modal-close" type="button" aria-label="סגירת קופון">×</button>
+      <div class="coupon-confetti" aria-hidden="true"></div>
+      <img src="R-COPUN.jpg" alt="קופון הנחה" />
+    </div>
+  </div>
   <div class="page">
     <div class="floating-shape shape-1"></div>
     <div class="floating-shape shape-2"></div>
@@ -795,9 +952,6 @@
     <section class="hero-images screen">
       <div class="hero-section hero-section--cover hero-section--first">
         <img src="1.jpg" alt="תמונה 1" />
-        <div class="coupon-fly">
-          <img src="R-COPUN.jpg" alt="קופון הנחה" />
-        </div>
       </div>
       <div class="hero-section hero-section--cover">
         <img src="2.jpeg" alt="תמונה 2" />
@@ -1014,6 +1168,80 @@
             });
           }, { threshold: 0.35 });
           lastScreenObserver.observe(lastScreen);
+        }
+
+        const couponModal = document.querySelector('.coupon-modal');
+        if (couponModal) {
+          const closeBtn = couponModal.querySelector('.coupon-modal-close');
+          const triggerBtn = document.querySelector('.coupon-trigger-button');
+          const glitterContainer = couponModal.querySelector('.coupon-confetti');
+
+          const glitterColors = ['#FFD700', '#C0C0C0', '#E5E4E2', '#CD7F32', '#FCE205', '#ffffff'];
+
+          function createGlitterParticle() {
+            if (!glitterContainer) return;
+            const particle = document.createElement('div');
+            particle.classList.add('glitter-particle');
+
+            const startLeft = Math.random() * 100;
+            particle.style.left = `${startLeft}%`;
+
+            const size = Math.random() * 6 + 4;
+            particle.style.setProperty('--size', `${size}px`);
+
+            const color = glitterColors[Math.floor(Math.random() * glitterColors.length)];
+            particle.style.setProperty('--color', color);
+
+            const duration = Math.random() * 3 + 2;
+            particle.style.setProperty('--duration', `${duration}s`);
+
+            const drift = Math.random() * 300 - 150;
+            particle.style.setProperty('--drift', `${drift}px`);
+
+            const rot = Math.random() * 1080 - 540;
+            particle.style.setProperty('--rot', `${rot}deg`);
+
+            glitterContainer.appendChild(particle);
+
+            setTimeout(() => {
+              particle.remove();
+            }, duration * 1000);
+          }
+
+          function runGlitterBurst() {
+            if (!glitterContainer) return;
+            for (let i = 0; i < 50; i++) {
+              setTimeout(createGlitterParticle, Math.random() * 900);
+            }
+          }
+
+          setTimeout(() => {
+            couponModal.classList.add('is-visible');
+            couponModal.setAttribute('aria-hidden', 'false');
+            runGlitterBurst();
+          }, 5000);
+
+          if (triggerBtn) {
+            triggerBtn.addEventListener('click', () => {
+              couponModal.classList.add('is-visible');
+              couponModal.setAttribute('aria-hidden', 'false');
+              runGlitterBurst();
+            });
+          }
+
+          if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+              couponModal.classList.remove('is-visible');
+              couponModal.setAttribute('aria-hidden', 'true');
+            });
+          }
+
+          couponModal.addEventListener('click', (event) => {
+            if (event.target === couponModal) {
+              couponModal.classList.remove('is-visible');
+              couponModal.setAttribute('aria-hidden', 'true');
+            }
+          });
         }
       });
     })();
