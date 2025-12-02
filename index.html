@@ -548,8 +548,15 @@
       }
 
       .hero-section--first {
-        background-size: contain; /* במובייל להראות כמה שיותר מהתמונה */
-        background-position: center top;
+        height: 100vh; /* בדף הראשון במובייל – מסך מלא */
+        padding: 0;
+        background-size: cover; /* פריסה מקצה לקצה של המסך */
+        background-position: center;
+      }
+
+      .coupon-fly {
+        max-width: min(200px, 60vw); /* קופון קטן יותר במובייל שלא מסתיר את כל הרקע */
+        bottom: 8%;
       }
 
       /* התאמת אנימציות כניסה למובייל - פחות תזוזה */
